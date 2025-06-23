@@ -18,9 +18,13 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        
-      - name: Build and Package Application
-        # FINAL ATTEMPT: Use the 'ci' task to skip the broken 'minify' step
+      
+      - name: Compile Source Code
+        # ADDED this essential step to compile the source first
+        run: npm run gulp -- compile
+
+      - name: Package Application
+        # This step packages the code we just compiled
         run: npm run gulp -- vscode-win32-x64-ci
 
       - name: Upload Artifact
