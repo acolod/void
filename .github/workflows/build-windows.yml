@@ -17,7 +17,7 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm install --ignore-scripts
+        run: npm install 
         
       - name: Build and Package Application
         run: npm run gulp -- vscode-win32-x64-archive
