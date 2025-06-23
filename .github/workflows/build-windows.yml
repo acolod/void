@@ -20,12 +20,11 @@ jobs:
         run: npm install
         
       - name: Build and Package Application
-        # CORRECTED the gulp task name to 'vscode-win32-x64-min'
-        run: npm run gulp -- vscode-win32-x64-min
+        # FINAL ATTEMPT: Use the 'ci' task to skip the broken 'minify' step
+        run: npm run gulp -- vscode-win32-x64-ci
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: void-portable-windows
-          # CORRECTED the path to the expected output folder
           path: ../VSCode-win32-x64
