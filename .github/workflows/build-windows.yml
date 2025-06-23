@@ -1,0 +1,29 @@
+name: Build Void for Windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install --ignore-scripts
+        
+      - name: Build and Package Application
+        run: npm run gulp -- vscode-win32-x64-archive
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: void-portable-windows
+          path: vscode-win32-x64-archive
